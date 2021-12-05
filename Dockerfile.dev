@@ -1,0 +1,39 @@
+# FROM python:3.9.9-slim-buster
+FROM osgeo/gdal:ubuntu-small-3.4.0
+
+WORKDIR /app
+
+LABEL maintainer="nouffer@gmail.com"
+LABEL description="Development image for the SENRIS API"
+
+ENV PYTHONDONTWRITEBYTECODE 1
+
+ENV PYTHONUNBUFFERED 1
+
+ARG TZ Asia/Colombo \
+    DEBIAN_FRONTEND=noninteractive
+
+
+RUN apt-get update -y
+
+
+RUN apt-get update \
+    && apt-get -y install netcat gcc postgresql \
+    && apt-get clean
+
+RUN apt-get update \
+    && apt-get install -y binutils libproj-dev gdal-bin python-gdal python3-gdal  
+
+RUN apt-get install -y libcurl4-openssl-dev libssl-dev
+
+RUN pip install --upgrade pip
+
+RUN apt-get update
+
+COPY ./requirements.txt /app/requirements.txt
+
+
+RUN pip install -r requirements.txt
+
+COPY . /app
+
