@@ -35,6 +35,13 @@
           background: none !important;
           color: white;
         }
+
+        .navbar{
+          left:0px;
+          right:0px;
+          top:0px;
+          bottom:0px;
+          }
     </style>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -88,6 +95,41 @@
           </div>
       </div>
     </div>
+
+    <div>
+      
+
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Meta Data<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Image Library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Interactive map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Administration</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+    </div>
       
       <div id="map"></div>
 
@@ -109,7 +151,7 @@
       });
 
       {% for lyr in wms_layers %}
-          var lname = L.tileLayer.wms('http://128.199.222.226:8600/geoserver/demo/wms', {
+          var lname = L.tileLayer.wms('http://209.97.169.212:8600/geoserver/demo/wms', {
               layers: '{{lyr.name}}',
               transparent: true,
               format: 'image/png'
@@ -134,9 +176,9 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://128.199.222.226:8000/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://209.97.169.212:8000/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://128.199.222.226:8000/api/v1/incidents/");
+          response = await fetch("http://209.97.169.212:8000/api/v1/incidents/");
         }
         const data = await response.json();
         currentIncidentLayer = L.geoJson(data);

@@ -78,25 +78,22 @@ def delete_layer(sender, instance, **kwargs):
     db.delete_table(table_name=instance.name, schema='public')
     geo.delete_layer(instance.name, "demo")
 
-class District(models.Model):
-    name=models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-class IncidentType(models.Model):
-    name=models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
 
 class Incident(models.Model):
-    name=models.CharField(max_length=512)
-    type=models.ForeignKey(IncidentType, on_delete=CASCADE)
-    district=models.ForeignKey(District, on_delete=CASCADE)
+
+    entity = models.CharField(_("Entity"), max_length=256, blank=True, null=True),
+    gnd_dsd=models.CharField(_("GND DSD"), max_length=256, blank=True, null=True),
+    damage=models.CharField(_("damage"), max_length=256, blank=True, null=True)
+    siviarity=models.CharField(_("siviority"), max_length=256, blank=True, null=True)
+    location_ref=models.CharField(_("location_ref"), max_length=256, blank=True, null=True)
+    image1=models.FileField(upload_to='%y%m%d', blank=True, null=True)
+    image2=models.FileField(upload_to='%y%m%d', blank=True, null=True)
+    image3=models.FileField(upload_to='%y%m%d', blank=True, null=True)
+    image4=models.FileField(upload_to='%y%m%d', blank=True, null=True)
+    note=models.CharField(_("note"), max_length=512, blank=True, null=True)
     location=models.PointField()
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.id
+
 

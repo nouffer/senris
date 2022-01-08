@@ -1,6 +1,6 @@
 from django.core.serializers import serialize
 from django.shortcuts import render
-from .models import Layer, Incident, District
+from .models import Layer, Incident
 from rest_framework import viewsets
 from .serializers import IncidentSerializer
 from rest_framework.decorators import action
@@ -10,8 +10,7 @@ from rest_framework.response import Response
 
 def IndexView(request):
     lyr = Layer.objects.all()
-    dist = District.objects.all();
-    return render(request, 'senris/index.html', {'wms_layers': lyr, 'district': dist})
+    return render(request, 'senris/index.html', {'wms_layers': lyr})
 
 
 class IncidentViewSet(viewsets.ModelViewSet):
