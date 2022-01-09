@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+   api:
+      build:
+         context: .
+         dockerfile: Dockerfile.gdal
+      command: python3 manage.py runserver 0.0.0.0:8100
+      volumes:
+         - .:/app
+      ports:
+        - 8100:8100
+      env_file:
+         - .env
+      restart: "on-failure"
+      depends_on:
+         - postgres-db
+      networks:
+         - senris-api
+
+   geoserver:
+      build:
+        context: .
+        dockerfile: Dockerfile.geoserver
+
+   postgres-db:
+      image: zhangjinxin09/postgis:13.1-3.1.1-3.1.0
+      ports:
+         - 5432:5432
+      volumes:
+         - postgres_data:/var/lib/postgresql
+      environment:
+         - POSTGRES_USER=${POSTGRES_USER}
+         - POSTGRES_PASS=${POSTGRES_PASS}
+         - POSTGRES_DBNAME=${POSTGRES_DBNAME}
+      restart: "on-failure"
+      networks:
+         - senris-api
+
+
+networks:
+   senris-api:
+      driver: bridge
+
+volumes:
+   postgres_data:
+   geoserver-data:
