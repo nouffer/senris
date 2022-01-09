@@ -19,9 +19,7 @@ services:
          - senris-api
 
    geoserver:
-      build:
-        context: .
-        dockerfile: ./resp/Dockerfile
+      image: geoserver:resp
       volumes:
         - geoserver-data:/opt/geoserver/data_dir
       ports:
