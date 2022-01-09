@@ -36,7 +36,7 @@ RUN apt-get update \
 
 RUN apt-get install -y libcurl4-openssl-dev libssl-dev
 
-RUN apt-get install libspatialindex-dev
+RUN apt-get install -y libspatialindex-dev
 
 RUN apt-get install -y python3
 
