@@ -50,8 +50,8 @@ services:
          - postgres_data:/var/lib/postgresql
       environment:
          - POSTGRES_USER=${POSTGRES_USER}
-         - POSTGRES_PASS=${POSTGRES_PASS}
-         - POSTGRES_DBNAME=${POSTGRES_DBNAME}
+         - POSTGRES_PASSWORD=${POSTGRES_PASS}
+         - POSTGRES_DB=${POSTGRES_DBNAME}
       restart: "on-failure"
       networks:
          - senris-api
