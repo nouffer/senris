@@ -176,9 +176,9 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://front.lk:8000/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://front.lk:8100/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://front.lk:8000/api/v1/incidents/");
+          response = await fetch("http://front.lk:8100/api/v1/incidents/");
         }
         const data = await response.json();
         currentIncidentLayer = L.geoJson(data);
