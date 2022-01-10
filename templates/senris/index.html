@@ -151,7 +151,7 @@
       });
 
       {% for lyr in wms_layers %}
-          var lname = L.tileLayer.wms('http://209.97.169.212:8600/geoserver/demo/wms', {
+          var lname = L.tileLayer.wms('http://front.lk:8600/geoserver/demo/wms', {
               layers: '{{lyr.name}}',
               transparent: true,
               format: 'image/png'
@@ -176,9 +176,9 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://209.97.169.212:8000/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://front.lk:8000/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://209.97.169.212:8000/api/v1/incidents/");
+          response = await fetch("http://front.lk:8000/api/v1/incidents/");
         }
         const data = await response.json();
         currentIncidentLayer = L.geoJson(data);
