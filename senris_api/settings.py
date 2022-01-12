@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'rest_framework_gis',
     'leaflet',
     'leaflet_admin_list',
-    'senris.apps.SenrisConfig'
+    'senris.apps.SenrisConfig',
+    'layers.apps.LayersConfig',
 ]
 
 MIDDLEWARE = [
