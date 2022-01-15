@@ -108,7 +108,6 @@ class MannarPlaces(models.Model):
     geom = models.PointField(srid=4326)
 
 
-
     
 class MannarRemainingForest(models.Model):
     forest_type = models.CharField(_("Forest type"), max_length=256)
