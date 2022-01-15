@@ -5,12 +5,14 @@ from rest_framework import viewsets
 from .serializers import IncidentSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from layers.models import ShapeLayers
 
 
 
 def IndexView(request):
     lyr = Layer.objects.all()
-    return render(request, 'senris/index.html', {'wms_layers': lyr})
+    shapeLayers =  ShapeLayers.objects.all()
+    return render(request, 'senris/index.html', {'wms_layers': lyr, 'md': shapeLayers})
 
 
 class IncidentViewSet(viewsets.ModelViewSet):

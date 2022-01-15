@@ -151,8 +151,21 @@
         addGeoJson(this.value);
       });
 
+      {% for lyr in md %}
+          var lname = L.tileLayer.wms('http://localhost:8600/geoserver/demo/wms', {
+              layers: '{{lyr.table_name}}',
+              transparent: true,
+              format: 'image/png'
+          });
+              
+          console.log('{{lyr.table_name}}');
+
+          layerControl.addOverlay(lname, '{{lyr.table_name}}');
+
+      {% endfor %}
+
       {% for lyr in wms_layers %}
-          var lname = L.tileLayer.wms('http://front.lk:8600/geoserver/demo/wms', {
+          var lname = L.tileLayer.wms('http://localhost:8600/geoserver/demo/wms', {
               layers: '{{lyr.name}}',
               transparent: true,
               format: 'image/png'
@@ -177,9 +190,9 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://front.lk:8100/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://localhost:8100/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://front.lk:8100/api/v1/incidents/");
+          response = await fetch("http://localhost:8100/api/v1/incidents/");
         }
         const data = await response.json();
         currentIncidentLayer = L.geoJson(data);
