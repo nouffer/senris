@@ -47,7 +47,7 @@ services:
       ports:
          - 5432:5432
       volumes:
-         - postgres_data:/var/lib/postgresql
+         - ./postgis:/var/lib/postgresql/data
       environment:
          - POSTGRES_USER=${POSTGRES_USER}
          - POSTGRES_PASSWORD=${POSTGRES_PASS}
@@ -55,6 +55,11 @@ services:
       restart: "on-failure"
       networks:
          - senris-api
+      healthcheck:
+         test: ["CMD-SHELL", "pg_isready -U postgres"]
+         interval: 60s
+         timeout: 5s
+         retries: 5
 
 
 networks:
