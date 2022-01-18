@@ -43,7 +43,7 @@ services:
          - senris-api
 
    postgres-db:
-      image: zhangjinxin09/postgis:13.1-3.1.1-3.1.0
+      image: tobi312/rpi-postgresql-postgis:13-3.1-alpine
       ports:
          - 5432:5432
       volumes:
