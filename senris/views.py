@@ -6,6 +6,7 @@ from .serializers import IncidentSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from layers.models import ShapeLayers
+from rest_framework.parsers import JSONParser, MultiPartParser
 
 
 
@@ -18,6 +19,7 @@ def IndexView(request):
 class IncidentViewSet(viewsets.ModelViewSet):
     queryset=Incident.objects.all()
     serializer_class=IncidentSerializer
+    # parser_classes = (MultiPartParser, JSONParser)
 
     def get_queryset(self):
         dist = self.request.GET.get('dist')

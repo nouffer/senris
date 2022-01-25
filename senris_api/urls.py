@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 from senris.views import IndexView
@@ -24,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView, name="index"),
     path('api/', include("senris.urls")),
-]
+    path('layers/', include("layers.urls"))
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = "SENRIS Admin"
 admin.site.site_title = "SENRIS GIS Admin Portal"
