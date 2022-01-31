@@ -144,9 +144,6 @@ class Mannar_PA_cover(models.Model):
     area = models.FloatField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
-
 
 class Mannar_Place(models.Model):
     place_id = models.BigIntegerField(null=True, blank=True)
