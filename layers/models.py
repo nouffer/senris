@@ -195,8 +195,6 @@ class Mannar_Small_irr_tank(models.Model):
     map_id = models.BigIntegerField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.tank_name
 
 
 class Ampara_Declared_forest(models.Model):
