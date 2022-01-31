@@ -159,8 +159,6 @@ class Mannar_River_basin_boundary(models.Model):
     basin_area = models.FloatField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
 
 
 class Mannar_River_stream(models.Model):
