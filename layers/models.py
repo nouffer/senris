@@ -328,9 +328,6 @@ class Ampara_Small_irr_tank(models.Model):
     dsd = models.CharField(max_length=37, null=True, blank=True)
     ownership = models.CharField(max_length=30, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
-
-    def __str__(self):
-        return str(self.id) + self.tank_name
     
     
     
