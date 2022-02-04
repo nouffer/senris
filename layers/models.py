@@ -361,7 +361,7 @@ def getTableForModel(tbl):
         return Ampara_River_stream.objects.model._meta.db_table;
     elif tbl == 27:
         return Ampara_Road.objects.model._meta.db_table;
-    elif tbl == 128:
+    elif tbl == 28:
         return Ampara_Slope.objects.model._meta.db_table;
     else:
         return Ampara_Small_irr_tank.objects.model._meta.db_table;
@@ -424,7 +424,7 @@ def getMappingforModel(tbl, shp):
         return LayerMapping(Ampara_River_stream, shp, ampara_river_stream_mapping, transform=False)
     elif tbl == 27:
         return LayerMapping(Ampara_Road, shp, ampara_road_mapping, transform=False)
-    elif tbl == 128:
+    elif tbl == 28:
         return LayerMapping(Ampara_Slope, shp, ampara_slope_mapping, transform=False)
     else:
         return LayerMapping(Ampara_Small_irr_tank, shp, ampara_small_irr_tank_mapping, transform=False)
