@@ -204,16 +204,10 @@ class Ampara_Declared_forest(models.Model):
     area = models.FloatField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
-
 
 class Ampara_Disrict_boundary(models.Model):
     district_n = models.CharField(max_length=254, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
-
-    def __str__(self):
-        return str(self.id) + self.district_n
 
 
 class Ampara_DS_boundary(models.Model):
@@ -230,8 +224,6 @@ class Ampara_Forest_cover(models.Model):
     forest_typ = models.CharField(max_length=50, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.forest_typ
 
     
 class Ampara_GN_boundary(models.Model):
@@ -242,8 +234,6 @@ class Ampara_GN_boundary(models.Model):
     shape_area = models.FloatField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.gnd_n
 
 
 class Ampara_Landuse(models.Model):
@@ -253,16 +243,12 @@ class Ampara_Landuse(models.Model):
     main_land = models.CharField(max_length=100, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.main_land
 
 class Ampara_Major_irr_tank(models.Model):
     tank_name = models.CharField(max_length=50, null=True, blank=True)
     map_id = models.BigIntegerField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.tank_name
 
 class Ampara_Other_state_forest(models.Model):
     fid_fc_201 = models.BigIntegerField(null=True, blank=True)
@@ -270,16 +256,12 @@ class Ampara_Other_state_forest(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
 
 
 class Ampara_Place(models.Model):
     name = models.CharField(max_length=25, null=True, blank=True)
     geom = models.MultiPointField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
 
 class Ampara_River_basin_boundary(models.Model):
     rb_id = models.IntegerField(null=True, blank=True)
@@ -287,8 +269,6 @@ class Ampara_River_basin_boundary(models.Model):
     basin_area = models.FloatField(null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
 
-    def __str__(self):
-        return str(self.id) + self.name
 
 class Ampara_River_stream(models.Model):
     objectid = models.IntegerField(null=True, blank=True)
@@ -304,9 +284,6 @@ class Ampara_Road(models.Model):
     end = models.CharField(max_length=70, null=True, blank=True)
     tot_length = models.FloatField(null=True, blank=True)
     geom = models.MultiLineStringField(srid=4326)
-
-    def __str__(self):
-        return str(self.id) + self.tl_nm_tran
     
 
 class Ampara_Slope(models.Model):
