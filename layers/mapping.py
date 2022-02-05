@@ -185,12 +185,11 @@ ampara_river_stream_mapping = {
 }
 
 ampara_road_mapping = {
-    'tl_nm_tran': 'TL_Nm_Tran',
-    'road_class': 'Class',
-    'type': 'Type',
-    'start': 'Start',
-    'end': 'End',
-    'tot_length': 'Tot_length',
+    'tl_nm_tran': 'tl_nm_tran',
+    'type': 'type',
+    'start': 'start',
+    'end': 'end',
+    'tot_length': 'tol_length',
     'geom': 'MULTILINESTRING',
 }
 
@@ -211,6 +210,22 @@ ampara_small_irr_tank_mapping = {
     'river_b_na': 'River_B_na',
     'dsd': 'DSD',
     'ownership': 'Ownership',
+    'geom': 'MULTIPOLYGON',
+}
+
+ampara_pa_cover = {
+    'name': 'NAME',
+    'con_status': 'Con_Status',
+    'owner': 'Owner',
+    'area': 'Area',
+    'geom': 'MULTIPOLYGON',
+}
+
+ampara_pa_cover_mapping = {
+    'name': 'NAME',
+    'con_status': 'Con_Status',
+    'area': 'Area',
+    'owner': 'owner',
     'geom': 'MULTIPOLYGON',
 }
 

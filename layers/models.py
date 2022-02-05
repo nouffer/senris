@@ -44,7 +44,8 @@ from .mapping import \
     ampara_river_basin_boundary_mapping, \
     ampara_road_mapping, \
     ampara_slope_mapping, \
-    ampara_small_irr_tank_mapping
+    ampara_small_irr_tank_mapping, \
+    ampara_pa_cover_mapping
 
 
 env = environ.Env(DEBUG=(bool, False))
@@ -303,6 +304,13 @@ class Ampara_Small_irr_tank(models.Model):
     dsd = models.CharField(max_length=37, null=True, blank=True)
     ownership = models.CharField(max_length=30, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
+
+class Ampara_PA_Cover(models.Model):
+    name = models.CharField(max_length=16, null=True, blank=True)
+    con_status = models.CharField(max_length=50, null=True, blank=True)
+    area = models.FloatField(null=True, blank=True)
+    owner = models.CharField(max_length=50, null=True, blank=True)
+    geom = models.MultiPolygonField(srid=4326)
     
     
     
@@ -363,8 +371,10 @@ def getTableForModel(tbl):
         return Ampara_Road.objects.model._meta.db_table;
     elif tbl == 28:
         return Ampara_Slope.objects.model._meta.db_table;
-    else:
+    elif tbl == 29:
         return Ampara_Small_irr_tank.objects.model._meta.db_table;
+    else:
+        return Ampara_PA_Cover.objects.model._meta.db_table;
         
 
 
@@ -426,8 +436,10 @@ def getMappingforModel(tbl, shp):
         return LayerMapping(Ampara_Road, shp, ampara_road_mapping, transform=False)
     elif tbl == 28:
         return LayerMapping(Ampara_Slope, shp, ampara_slope_mapping, transform=False)
-    else:
+    elif tbl ==29:
         return LayerMapping(Ampara_Small_irr_tank, shp, ampara_small_irr_tank_mapping, transform=False)
+    else:
+        return LayerMapping(Ampara_PA_Cover, shp, ampara_pa_cover_mapping, transform=False)
 
 class ShapeLayers(models.Model):
     name = models.CharField(_("Shape Layer"), max_length=255)
