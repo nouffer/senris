@@ -42,6 +42,19 @@
           top:0px;
           bottom:0px;
           }
+
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
     </style>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -141,6 +154,7 @@
     <script src="//cdn.jsdelivr.net/npm/leaflet-sidebar-v2@3.1.1/js/leaflet-sidebar.min.js"></script>
     <script src="//cdn.jsdelivr.net/gh/eligrey/FileSaver.js@2.0.2/dist/FileSaver.min.js"></script>
     <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'L.TileLayer.BetterWMS.js' %}"></script>
     <script>
 
       let currentIncidentLayer = null;
@@ -152,7 +166,7 @@
       });
 
       {% for lyr in md %}
-          var lname = L.tileLayer.wms('http://front.lk:8600/geoserver/demo/wms', {
+          var lname = L.tileLayer.betterWms('http://localhost:8600/geoserver/demo/wms', {
               layers: '{{lyr.table_name}}',
               transparent: true,
               format: 'image/png'
@@ -165,7 +179,7 @@
       {% endfor %}
 
       {% for lyr in wms_layers %}
-          var lname = L.tileLayer.wms('http://front.lk:8600/geoserver/demo/wms', {
+          var lname =  L.tileLayer.betterWms('http://localhost:8600/geoserver/demo/wms', {
               layers: '{{lyr.name}}',
               transparent: true,
               format: 'image/png'
@@ -182,6 +196,26 @@
         layerControl.addOverlay(overlayMaps[name], name);
       }
 
+
+
+      var geojsonMarkerOptions = {
+        radius: 6,
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      };
+
+      function onEachFeature(feature, layer) {
+        // does this feature have a property named popupContent?
+        if (feature.properties && feature.properties.image1) {
+            layer.bindPopup( "<img src=" + feature.properties.image1 + "/>  ");
+            //layer.bindPopup("<img scr='${feature.properties.image1}'></img>");
+        }
+      }
+
+
+
       async function addGeoJson(dist) {
         if(currentIncidentLayer != null){
           map.removeLayer(currentIncidentLayer);
@@ -190,12 +224,29 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://front.lk:8100/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://localhost:8100/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://front.lk:8100/api/v1/incidents/");
+          response = await fetch("http://localhost:8100/api/v1/incidents/");
         }
         const data = await response.json();
-        currentIncidentLayer = L.geoJson(data);
+        currentIncidentLayer = L.geoJson(
+          data,
+          {
+            style: function(feature) {
+              var mag = feature.properties.damage;
+              if (mag == 'bvhg') {
+                return { color: "red" }; 
+              } 
+              else {
+                return { color: "green" };
+              }
+            },
+            pointToLayer: function(feature, latlng) {
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+            onEachFeature: onEachFeature
+          }
+        );
         layerControl.addOverlay(currentIncidentLayer, 'Incidents');
       }
     

@@ -78,12 +78,43 @@ def delete_layer(sender, instance, **kwargs):
     db.delete_table(table_name=instance.name, schema='public')
     geo.delete_layer(instance.name, "demo")
 
+###################### incident  ###########################
+
+DAMAGE = (
+    (1, _("Encroachments")),
+    (2, _("Mining")),
+    (3, _("Filling of Land")),
+    (4, _("Damages to the Mangroves")),
+    (5, _("Poaching and Traps")),
+    (6, _("Forest Fires")),
+    (7, _("Other natural resources")),
+    (8, _("impacts on the livelihood of communities")),
+    (9, _("Poaching")),
+    (10, _("Illegal Traps")),
+    (11, _("Illegal electric fences")),
+    (12, _("Intentional forest fires")),
+    (13, _("Other"))
+)
+
+class Damage(models.Model):
+    name=models.CharField(_("Name"), max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class SensitiveEntity(models.Model):
+    name=models.CharField(_("Name"), max_length=255)
+
+    def __str__(self):
+        return self.name
+
 
 class Incident(models.Model):
 
-    entity = models.CharField(_("Entity"), max_length=256, blank=True, null=True),
+    entity = models.ForeignKey('SensitiveEntity', on_delete=models.CASCADE, blank=True, null=True)
     gnd_dsd=models.CharField(_("GND DSD"), max_length=256, blank=True, null=True),
-    damage=models.CharField(_("damage"), max_length=256, blank=True, null=True)
+    damage=models.ForeignKey('Damage', on_delete=models.CASCADE, blank=True, null=True)
     siviarity=models.CharField(_("siviority"), max_length=256, blank=True, null=True)
     location_ref=models.CharField(_("location_ref"), max_length=256, blank=True, null=True)
     image1=models.FileField(upload_to='%y%m%d', blank=True, null=True)
@@ -93,7 +124,7 @@ class Incident(models.Model):
     note=models.CharField(_("note"), max_length=512, blank=True, null=True)
     location=models.PointField()
 
-    # def __str__(self):
-    #     return self.id
+    def __str__(self):
+        return self.entity
 
 
