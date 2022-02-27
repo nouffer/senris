@@ -13,7 +13,8 @@ from rest_framework.parsers import JSONParser, MultiPartParser
 def IndexView(request):
     lyr = Layer.objects.all()
     shapeLayers =  ShapeLayers.objects.all()
-    return render(request, 'senris/index.html', {'wms_layers': lyr, 'md': shapeLayers})
+    entities = SensitiveEntity.objects.all()
+    return render(request, 'senris/index.html', {'wms_layers': lyr, 'md': shapeLayers, 'entities':entities})
 
 
 class IncidentViewSet(viewsets.ModelViewSet):
@@ -24,7 +25,7 @@ class IncidentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         dist = self.request.GET.get('dist')
         if dist != None :
-            queryset = Incident.objects.filter(district=dist)
+            queryset = Incident.objects.filter(entity=dist)
         else:
             queryset = Incident.objects.all()
         return queryset

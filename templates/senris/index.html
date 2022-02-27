@@ -95,7 +95,7 @@
               <h3>Filters</h3>
               <select id="id_dist" name="customer">
                 <option value="0">All</option>
-                {% for d in district%}
+                {% for d in entities%}
                   <option value="{{ d.id }}">{{ d.name }}</option>
                 {% endfor %}
               </select>
@@ -229,6 +229,7 @@
           response = await fetch("http://localhost:8100/api/v1/incidents/");
         }
         const data = await response.json();
+        console.log(data);
         currentIncidentLayer = L.geoJson(
           data,
           {

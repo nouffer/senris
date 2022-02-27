@@ -124,7 +124,4 @@ class Incident(models.Model):
     note=models.CharField(_("note"), max_length=512, blank=True, null=True)
     location=models.PointField()
 
-    def __str__(self):
-        return self.entity
-
 
