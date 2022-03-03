@@ -155,6 +155,8 @@
     <script src="//cdn.jsdelivr.net/gh/eligrey/FileSaver.js@2.0.2/dist/FileSaver.min.js"></script>
     <script src="{% static 'main.js' %}"></script>
     <script src="{% static 'L.TileLayer.BetterWMS.js' %}"></script>
+    <script src="{% static 'leaflet.browser.print.min.js' %}"></script>
+
     <script>
 
       let currentIncidentLayer = null;
@@ -252,6 +254,9 @@
       }
     
       addGeoJson();
+
+      L.control.browserPrint({position: 'topleft', title: 'Print ...'}).addTo(map);
+
     </script>
   </body>
 </html>
