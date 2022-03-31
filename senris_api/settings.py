@@ -161,3 +161,5 @@ LEAFLET_CONFIG = {
     'TILES': [('Satellite', 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {'attribution': '&copy; ESRI', 'maxZoom': 19}),
           ('Streets', 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy; Contributors'})]
 }
+
+LOGIN_REDIRECT_URL = "/"

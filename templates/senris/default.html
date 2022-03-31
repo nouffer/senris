@@ -1,0 +1,149 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/leaflet-sidebar-v2@3.1.1/css/leaflet-sidebar.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        .content{
+            margin-left: 60px;
+            margin-right: 60px;
+            margin-top: 60px;
+        }
+
+        .center{
+            max-width: 700px;
+            margin: auto
+        }
+
+        .footer-basic {
+        padding:40px 0;
+        background-color:#ffffff;
+        color:#4b4c4d;
+        }
+
+        .footer-basic ul {
+        padding:0;
+        list-style:none;
+        text-align:center;
+        font-size:18px;
+        line-height:1.6;
+        margin-bottom:0;
+        }
+
+        .footer-basic li {
+        padding:0 10px;
+        }
+
+        .footer-basic ul a {
+        color:inherit;
+        text-decoration:none;
+        opacity:0.8;
+        }
+
+        .footer-basic ul a:hover {
+        opacity:1;
+        }
+
+        .footer-basic .copyright {
+        margin-top:15px;
+        text-align:center;
+        font-size:13px;
+        color:#aaa;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <span>
+            <img height="60px" src="{% static 'Vertical_RGB_294.png' %}" />&nbsp;&nbsp;&nbsp;
+            <img height="60px" src="{% static 'CEJ_Logo.png' %}" />
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Meta Data<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Image Library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'incidents' %}">Interactive map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin:index' %}">Administration</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div>
+        <div class="content">
+            <h5>The Centre for Environmental Justice (CEJ) is an environmental conservation and public interest litigation organization in Sri Lanka 
+                with key objectives to:</h5>
+            <ul>
+                <li>mprove environmental justice, good governance, and ecological democracy</li>
+                <li>Promote sustainable development and environmentally responsible communities, </li>
+                <li>Encourage community participation in decision-making on natural resources.  </li>
+                <li>Safeguard nature, ecosystem and defend frond frontline communities from human rights violations and campaigns</li>
+                <li>Promote Environmental Justice and equity through legal and other means.</li>
+            </ul>
+            <p>
+                As the natural environment is at risk today, CEJ believes that environmental protection should be done at all levels while the 
+government has a major role to play, every citizen has a responsibility to care for the environment in which they live. It is in this 
+endeavor the CEJ planned out a new initiative to protect the environment, to ensure equal environmental rights for all people, and 
+to promote ecological sustainability by supporting environmentally sound community activities by the project on “Safeguarding 
+Environment and Natural Resources and working towards sustainable development through awareness and advocacy”.
+            </p>
+            <h5>Mannar and Ampara Districts have taken as the project area for intervention under three main components:</h5>
+            <ol>
+                <li>dentification of <b>Other State Forests (OSF) </b> in Mannar and Ampara Districts and updating the locational data with field 
+                    observations to provide evidence-based information to halt the cancellation of the 5/2001 circular.</li>
+                <li>
+                    Conducting a <b>Biodiversity Study</b> within the identified OSF and ecological significance of the forests and wildlife areas 
+in the districts to advocate the issues threatening their existence and sustainabilit
+                </li>
+                <li>
+                    <b>Land Use Analysis</b> to understand the implications of releasing the lands for different uses as proposed by the 
+                    Government and to leverage the advocacy programs to convince relevant authorities and decision-makers in lobbying 
+                    the sensitive issues with the law and decision-makers for advocating corrective interventions.
+                </li>
+            </ol>
+            <p>
+                <b>Crowdsource incidents of forest destructions using WebGIS and Mobile App</b> developed to report to the “<b>Safeguarding 
+                    Environment and Natural Resources Information System</b>” to demarcate and update the incident-based spatial maps regularly.
+            </p>
+        </div>
+    </div>
+    <div class="center">
+        <footer>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                <li class="list-inline-item"><a href="#">Meta Data<span class="sr-only">(current)</span></a></li>
+                <li class="list-inline-item"><a href="#">Image Library</a></li>
+                <li class="list-inline-item"><a href="{% url 'incidents' %}">Interactive map</a></li>
+                <li class="list-inline-item"><a href="#">Contact</a></li>
+                <li class="list-inline-item"><a href="{% url 'admin:index' %}">Administration</a></li>
+            </ul>
+            <p style="text-align: center;" class="copyright">CEJ © 2018</p>
+        </footer>
+    </div>
+  </body>
+</html>

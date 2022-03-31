@@ -16,6 +16,10 @@ def IndexView(request):
     entities = SensitiveEntity.objects.all()
     return render(request, 'senris/index.html', {'wms_layers': lyr, 'md': shapeLayers, 'entities':entities})
 
+def DefaulttView(request):
+
+    return render(request, 'senris/default.html')
+
 
 class IncidentViewSet(viewsets.ModelViewSet):
     queryset=Incident.objects.all()

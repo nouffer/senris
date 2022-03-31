@@ -114,27 +114,35 @@
 
       
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">
+          <span>
+            <img height="60px" src="{% static 'Vertical_RGB_294.png' %}" />&nbsp;&nbsp;&nbsp;
+            <img height="60px" src="{% static 'CEJ_Logo.png' %}" />
+          </span>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Meta Data<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Meta Data<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Image Library</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="#">Interactive map</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Administration</a>
+              <a class="nav-link" href="{% url 'admin:index' %}">Administration</a>
             </li>
           </ul>
         </div>
@@ -168,7 +176,7 @@
       });
 
       {% for lyr in md %}
-          var lname = L.tileLayer.betterWms('http://front.lk:8600/geoserver/demo/wms', {
+          var lname = L.tileLayer.betterWms('http://localhost:8600/geoserver/demo/wms', {
               layers: '{{lyr.table_name}}',
               transparent: true,
               format: 'image/png'
@@ -181,7 +189,7 @@
       {% endfor %}
 
       {% for lyr in wms_layers %}
-          var lname =  L.tileLayer.betterWms('http://front.lk:8600/geoserver/demo/wms', {
+          var lname =  L.tileLayer.betterWms('http://localhost:8600/geoserver/demo/wms', {
               layers: '{{lyr.name}}',
               transparent: true,
               format: 'image/png'
@@ -210,8 +218,16 @@
 
       function onEachFeature(feature, layer) {
         // does this feature have a property named popupContent?
+        var html = '<img height="200" src=' + feature.properties.image1 + '/>';
+        html += '<p> <b> Entity</b> :' + feature.properties.entity_name +'<br/>';
+        html += '<b> GND GND</b> :' + feature.properties.gnd_dsd +'<br/>';
+        html += '<b> Damage</b> :' + feature.properties.damage_name +'<br/>';
+        html += '<b> Siverity</b> :' + feature.properties.siviarity +'<br/>';
+        html += '<b> Location Ref</b> :' + feature.properties.location_ref +'<br/>';
+        html += '</p>';
+        
         if (feature.properties && feature.properties.image1) {
-            layer.bindPopup( "<img src=" + feature.properties.image1 + "/>  ");
+            layer.bindPopup(html);
             //layer.bindPopup("<img scr='${feature.properties.image1}'></img>");
         }
       }
@@ -226,9 +242,9 @@
         
         let response = ''
         if(dist !== null && dist > 0){
-          response = await fetch(`http://front.lk:8100/api/v1/incidents?dist=${dist}`);
+          response = await fetch(`http://localhost:8100/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://front.lk:8100/api/v1/incidents/");
+          response = await fetch("http://localhost:8100/api/v1/incidents/");
         }
         const data = await response.json();
         console.log(data);
@@ -237,12 +253,7 @@
           {
             style: function(feature) {
               var mag = feature.properties.damage;
-              if (mag == 'bvhg') {
-                return { color: "red" }; 
-              } 
-              else {
-                return { color: "green" };
-              }
+              return {color: feature.properties}
             },
             pointToLayer: function(feature, latlng) {
               return L.circleMarker(latlng, geojsonMarkerOptions);

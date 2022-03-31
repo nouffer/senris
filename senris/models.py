@@ -105,6 +105,7 @@ class Damage(models.Model):
 
 class SensitiveEntity(models.Model):
     name=models.CharField(_("Name"), max_length=255)
+    color_code = models.CharField(_("Hex color code"), max_length=10, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -112,9 +113,9 @@ class SensitiveEntity(models.Model):
 
 class Incident(models.Model):
 
-    entity = models.ForeignKey('SensitiveEntity', on_delete=models.CASCADE, blank=True, null=True)
-    gnd_dsd=models.CharField(_("GND DSD"), max_length=256, blank=True, null=True),
-    damage=models.ForeignKey('Damage', on_delete=models.CASCADE, blank=True, null=True)
+    entity = models.ForeignKey('SensitiveEntity', related_name='entity', on_delete=models.CASCADE, blank=True, null=True)
+    damage=models.ForeignKey('Damage', related_name='damage', on_delete=models.CASCADE, blank=True, null=True)
+    gnd_dsd = models.CharField("gnd_dsd",max_length=256, blank=True, null=True )
     siviarity=models.CharField(_("siviority"), max_length=256, blank=True, null=True)
     location_ref=models.CharField(_("location_ref"), max_length=256, blank=True, null=True)
     image1=models.FileField(upload_to='%y%m%d', blank=True, null=True)

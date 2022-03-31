@@ -19,12 +19,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from senris.views import IndexView
+from senris.views import IndexView, DefaulttView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView, name="index"),
+    path('', DefaulttView, name="index"),
+    path('incidents/', IndexView, name="incidents"),
+    path("accounts/", include("django.contrib.auth.urls")), 
     path('api/', include("senris.urls")),
     path('layers/', include("layers.urls"))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
