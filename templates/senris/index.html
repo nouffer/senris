@@ -244,7 +244,7 @@
         if(dist !== null && dist > 0){
           response = await fetch(`http://localhost:8100/api/v1/incidents?dist=${dist}`);
         }else {
-          response = await fetch("http://localhost:8100/api/v1/incidents/");
+          response = await fetch("http://172.20.10.8:8100/api/v1/incidents/");
         }
         const data = await response.json();
         console.log(data);

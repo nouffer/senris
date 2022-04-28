@@ -1,3 +1,4 @@
+from ntpath import realpath
 from django.contrib.gis.db import models
 from django.db.models.deletion import CASCADE
 from django.utils.translation import gettext_lazy as _
@@ -12,6 +13,7 @@ import environ
 from geo.Geoserver import Geoserver
 from geo.Postgres import Db
 from sqlalchemy.sql.functions import mode
+from django.contrib.auth.models import User
 
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(env_file=".env")
@@ -124,5 +126,7 @@ class Incident(models.Model):
     image4=models.FileField(upload_to='%y%m%d', blank=True, null=True)
     note=models.CharField(_("note"), max_length=512, blank=True, null=True)
     location=models.PointField()
-
-
+    reporter = models.ForeignKey(User, related_name="reported_user", on_delete=models.DO_NOTHING, blank=True, null=True)
+    collected_location=models.PointField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    modified_at = models.DateTimeField(auto_now=True, blank=True, null=True)

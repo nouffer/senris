@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'rest_framework',
     'rest_framework_gis',
+    'knox',
     'leaflet',
     'leaflet_admin_list',
     'senris.apps.SenrisConfig',
@@ -163,3 +164,7 @@ LEAFLET_CONFIG = {
 }
 
 LOGIN_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication', ),
+}

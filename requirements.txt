@@ -62,3 +62,4 @@ tomli==1.2.2
 typing_extensions==4.0.0
 urllib3==1.26.7
 django-extra-fields==3.0.2
+django-rest-knox==4.2.0
