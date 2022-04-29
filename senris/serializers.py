@@ -39,7 +39,7 @@ class IncidentSerializer(GeoFeatureModelSerializer):
         model=Incident
         geo_field="location"
         fields="__all__"
-        #fields=('id', 'gnd_dsd', 'damage', 'entity', 'siviarity', 'location_ref', 'note', 'image1', 'image2', 'image3', 'image4', 'collected_location',)
+        #fields=('id', 'gnd_dsd', 'damage', 'entity', 'siviarity', 'is_approved', 'location_ref', 'note', 'image1', 'image2', 'image3', 'image4', 'collected_location',)
         
 
 

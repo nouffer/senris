@@ -32,9 +32,9 @@ class IncidentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         dist = self.request.GET.get('dist')
         if dist != None :
-            queryset = Incident.objects.filter(entity=dist)
+            queryset = Incident.objects.filter(entity=dist, is_approved=True)
         else:
-            queryset = Incident.objects.all()
+            queryset = Incident.objects.filter(is_approved=True)
         return queryset
 
 

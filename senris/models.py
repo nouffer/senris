@@ -1,3 +1,4 @@
+from email.policy import default
 from ntpath import realpath
 from django.contrib.gis.db import models
 from django.db.models.deletion import CASCADE
@@ -120,6 +121,7 @@ class Incident(models.Model):
     gnd_dsd = models.CharField("gnd_dsd",max_length=256, blank=True, null=True )
     siviarity=models.CharField(_("siviority"), max_length=256, blank=True, null=True)
     location_ref=models.CharField(_("location_ref"), max_length=256, blank=True, null=True)
+    is_approved = models.BooleanField(_("Is Approved"), default=False)
     image1=models.FileField(upload_to='%y%m%d', blank=True, null=True)
     image2=models.FileField(upload_to='%y%m%d', blank=True, null=True)
     image3=models.FileField(upload_to='%y%m%d', blank=True, null=True)
