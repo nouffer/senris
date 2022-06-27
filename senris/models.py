@@ -127,6 +127,7 @@ class Incident(models.Model):
     image3=models.FileField(upload_to='%y%m%d', blank=True, null=True)
     image4=models.FileField(upload_to='%y%m%d', blank=True, null=True)
     note=models.CharField(_("note"), max_length=512, blank=True, null=True)
+    contact=models.CharField(_("Contact No"), max_length=512, blank=True, null=True)
     location=models.PointField()
     reporter = models.ForeignKey(User, related_name="reported_user", on_delete=models.DO_NOTHING, blank=True, null=True)
     collected_location=models.PointField(blank=True, null=True)
