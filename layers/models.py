@@ -322,6 +322,7 @@ class ProtectedArea(models.Model):
     date_gaz = models.CharField(max_length=128, null=True, blank=True)
     category = models.CharField(max_length=128, null=True, blank=True)
     remarkes = models.CharField(max_length=128, null=True, blank=True)
+    geom = models.MultiPolygonField(srid=4326)
     
     
     
