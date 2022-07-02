@@ -229,5 +229,16 @@ ampara_pa_cover_mapping = {
     'geom': 'MULTIPOLYGON',
 }
 
+protected_area_mapping = {
+    'name': 'NAME',
+    'constatus': 'Con_Status',
+    'owner': 'Owner',
+    'area': 'Area',
+    'gaz_no': 'GAZ_NO',
+    'date_gaz': 'DATE_GAZ',
+    'category': 'CATEGORY',
+    'remarkes': 'REMARKES'
+}
+
 
 

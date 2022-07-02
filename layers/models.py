@@ -45,7 +45,8 @@ from .mapping import \
     ampara_road_mapping, \
     ampara_slope_mapping, \
     ampara_small_irr_tank_mapping, \
-    ampara_pa_cover_mapping
+    ampara_pa_cover_mapping,\
+    protected_area_mapping
 
 
 env = environ.Env(DEBUG=(bool, False))
@@ -311,6 +312,16 @@ class Ampara_PA_Cover(models.Model):
     area = models.FloatField(null=True, blank=True)
     owner = models.CharField(max_length=50, null=True, blank=True)
     geom = models.MultiPolygonField(srid=4326)
+
+class ProtectedArea(models.Model):
+    name = models.CharField(max_length=255, null=True, blank=True)
+    constatus = models.CharField(max_length=128, null=True, blank=True)
+    owner = models.CharField(max_length=128, null=True, blank=True)
+    area = models.FloatField()
+    gaz_no = models.CharField(max_length=128, null=True, blank=True)
+    date_gaz = models.CharField(max_length=128, null=True, blank=True)
+    category = models.CharField(max_length=128, null=True, blank=True)
+    remarkes = models.CharField(max_length=128, null=True, blank=True)
     
     
     
@@ -373,8 +384,11 @@ def getTableForModel(tbl):
         return Ampara_Slope.objects.model._meta.db_table;
     elif tbl == 29:
         return Ampara_Small_irr_tank.objects.model._meta.db_table;
-    else:
+    elif tbl == 30:
         return Ampara_PA_Cover.objects.model._meta.db_table;
+    else:
+        return ProtectedArea.objects.model._meta.db_table;
+        
         
 
 
@@ -438,8 +452,11 @@ def getMappingforModel(tbl, shp):
         return LayerMapping(Ampara_Slope, shp, ampara_slope_mapping, transform=False)
     elif tbl ==29:
         return LayerMapping(Ampara_Small_irr_tank, shp, ampara_small_irr_tank_mapping, transform=False)
-    else:
+    elif tbl == 30:
         return LayerMapping(Ampara_PA_Cover, shp, ampara_pa_cover_mapping, transform=False)
+    else:
+        return LayerMapping(ProtectedArea, shp, protected_area_mapping, transform=False)
+       
 
 class ShapeLayers(models.Model):
     name = models.CharField(_("Shape Layer"), max_length=255)

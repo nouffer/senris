@@ -30,7 +30,8 @@ LAYER_CHOICES = (
     (27, _("Ampara_Road")),
     (28, _("Ampara_Slope")),
     (29, _("Ampara_Small_irr_tank")),
-    (30, _("Ampara_PA_Cover"))
+    (30, _("Ampara_PA_Cover")),
+    (31, _("ProtectedArea")),
 )
 RELEVANCE_CHOICES = (
     (1, _("Unread")),

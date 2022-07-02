@@ -30,6 +30,7 @@ from .models import \
     Ampara_Road, \
     Ampara_Slope, \
     Ampara_Small_irr_tank, \
+    ProtectedArea, \
     ShapeLayers
 
 admin.site.register(ShapeLayers, LeafletGeoAdmin)
@@ -62,4 +63,5 @@ admin.site.register(Mannar_Forest_cover, LeafletGeoAdmin)
 admin.site.register(Mannar_DS_boundary, LeafletGeoAdmin)
 admin.site.register(Mannar_District_boundary, LeafletGeoAdmin)
 admin.site.register(Mannar_Declared_forest, LeafletGeoAdmin)
+admin.site.register(ProtectedArea, LeafletGeoAdmin)
 
