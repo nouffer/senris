@@ -237,7 +237,8 @@ protected_area_mapping = {
     'gaz_no': 'GAZ_NO',
     'date_gaz': 'DATE_GAZ',
     'category': 'CATEGORY',
-    'remarkes': 'REMARKES'
+    'remarkes': 'REMARKES',
+    'geom': 'MULTIPOLYGON',
 }
 
 
