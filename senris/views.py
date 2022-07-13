@@ -25,7 +25,7 @@ def DefaulttView(request):
 
 
 def privacyView(request):
-    return render(request, 'senris.privacy.html')
+    return render(request, 'senris/privacy.html')
 
 
 class IncidentViewSet(viewsets.ModelViewSet):

@@ -27,7 +27,7 @@ from senris.views import IndexView, DefaulttView, RegistrationAPI, LoginAPI, Use
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', DefaulttView, name="index"),
-    path('privacy', privacyView, name="privacy"),
+    path('privacy/', privacyView, name="privacy"),
     path('incidents/', IndexView, name="incidents"),
     path("accounts/", include("django.contrib.auth.urls")), 
     path('api/', include("senris.urls")),
