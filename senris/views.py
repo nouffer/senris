@@ -24,6 +24,10 @@ def DefaulttView(request):
     return render(request, 'senris/default.html')
 
 
+def privacyView(request):
+    return render(request, 'senris.privacy.html')
+
+
 class IncidentViewSet(viewsets.ModelViewSet):
     queryset=Incident.objects.all()
     serializer_class=IncidentSerializer

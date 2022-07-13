@@ -21,12 +21,13 @@ from senris.views import IndexView, RegistrationAPI, LoginAPI
 from knox import views as knox_views
 
 
-from senris.views import IndexView, DefaulttView, RegistrationAPI, LoginAPI, UserAPI
+from senris.views import IndexView, DefaulttView, RegistrationAPI, LoginAPI, UserAPI, privacyView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', DefaulttView, name="index"),
+    path('privacy', privacyView, name="privacy"),
     path('incidents/', IndexView, name="incidents"),
     path("accounts/", include("django.contrib.auth.urls")), 
     path('api/', include("senris.urls")),
