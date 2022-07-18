@@ -100,14 +100,18 @@ DAMAGE = (
 )
 
 class Damage(models.Model):
-    name=models.CharField(_("Name"), max_length=255)
+    name=models.CharField(_("Name"), max_length=512, default="")
+    namesi=models.CharField(_("Name in sinhala"), max_length=512, default="")
+    nameta=models.CharField(_("Name in tamil"), max_length=512, default="")
 
     def __str__(self):
         return self.name
 
 
 class SensitiveEntity(models.Model):
-    name=models.CharField(_("Name"), max_length=255)
+    name=models.CharField(_("Name"), max_length=512, default="")
+    namesi=models.CharField(_("Name in sinhala"), max_length=512, default="")
+    nameta=models.CharField(_("Name in tamil"), max_length=512, default="")
     color_code = models.CharField(_("Hex color code"), max_length=10, blank=True, null=True)
 
     def __str__(self):
